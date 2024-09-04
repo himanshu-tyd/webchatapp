@@ -4,6 +4,8 @@ import { Card, CardContent } from "@/components/ui/card"
 import { LandingPageData} from '../constants/index.js'
 import { MoonIcon ,SunIcon,GitHubLogoIcon,TwitterLogoIcon} from '@radix-ui/react-icons'
 import extractYear from '../lib/utils.js'
+import { Link } from 'react-router-dom'
+
 
 export default function LandingPage() {
   const [darkMode, setDarkMode] = useState(false)
@@ -57,9 +59,13 @@ export default function LandingPage() {
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8  ">
               Experience seamless communication with WebChatApp
             </p>
+            <Link to={'/signup'} >
+
             <Button size="lg" className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white">
               Start Chatting Now
             </Button>
+
+            </Link>
           </section>
 
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
@@ -81,9 +87,6 @@ export default function LandingPage() {
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
               Join thousands of users already enjoying WebChatApp
             </p>
-            <Button size="lg" className="bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 hover:from-amber-600 hover:via-orange-700 hover:to-yellow-600 text-white">
-              Sign Up Now
-            </Button>
           </section>
         </main>
 

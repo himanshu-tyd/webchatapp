@@ -3,9 +3,9 @@ import generateToken from "../utils/Token.js";
 import bcrypt from "bcryptjs";
 
 export const singUp = async (req, res) => {
-  const { fullName, username, password, cpassword, image } = req.body;
+  const { fullName, username, password, confirmPassword, image } = req.body;
   try {
-    if (password !== cpassword) {
+    if (password !== confirmPassword) {
       return res
         .status(400)
         .json({ success: false, message: "password do not match" });
@@ -42,7 +42,7 @@ export const singUp = async (req, res) => {
         .status(201)
         .json({
           success: true,
-          messsage: "successfully register",
+          message: "Congratulations! Your account has been successfully created.",
           data: saveUser,
         });
     }
@@ -62,7 +62,7 @@ export const login = async (req, res) => {
         .status(404)
         .json({
           success: false,
-          message: "User don't have an account please create account first.",
+          message: "Account Not Found",
         });
     }
 
@@ -71,13 +71,13 @@ export const login = async (req, res) => {
     if (!hashCompare) {
       return res
         .status(400)
-        .json({ success: false, message: "Invalid crediantials." });
+        .json({ success: false, message: "Your username or password is incorrect. Please try again." });
     }
 
     //TODO:generate token and set in cookie
     generateToken(user._id, res);
 
-    res.status(200).json({ success: true, message: "Signin successfully",data:user});
+    res.status(200).json({ success: true, message: "Login Successful",data:user});
 
   } catch (e) {
     console.log("ERROR IN LOGIN ->", e);
@@ -88,7 +88,7 @@ export const login = async (req, res) => {
 export const logout = async (req, res) => {
   try {
     res.cookie("jwt", "",{ maxAge: 0 })
-    res.status(200).json({ success: true, message: "logged out successfully" });
+    res.status(200).json({ success: true, message: "Logged Out Successfully" });
   } catch (e) {
     console.log("ERROR IN LOGOUT ->", e);
     return res.status(500).json("INTERNAL SERVER ERROR -->", e);

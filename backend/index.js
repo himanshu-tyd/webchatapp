@@ -16,10 +16,10 @@ const PORT=process.env.PORT || 8000
 //TODO:MIDDLWARES
 
 app.use(express.json()) //TODO: To parse the incoming request with JSON payloads from (req.body)
-app.use(cookieParser()) // TODO: TO access the cookie  
-app.use('/api/v1/auth',authRouter)
-app.use('/api/v1/messages',messsageRouter)
-app.use('/api/v1/users',usersRouter)
+app.use(cookieParser({origin:true})) // TODO: TO access the cookie  
+app.use('/api/auth',authRouter)
+app.use('/api/messages',messsageRouter)
+app.use('/api/users',usersRouter)
 
 app.listen(8000,()=>{
     console.log(`SERVER IS RUNNING AT ${PORT} `)

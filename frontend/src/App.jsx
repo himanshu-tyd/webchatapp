@@ -1,13 +1,13 @@
-import LandingPage from "./pages/LandingPage";
+import FileRouter from "./routes/FileRouter";
 
 const App = () => {
   return (
-    <div  >
+    <div>
       <div className="main">
         <div className="gradient"></div>
       </div>
       <main className="">
-        <LandingPage />
+        <FileRouter/>
       </main>
     </div>
   );
