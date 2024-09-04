@@ -8,9 +8,8 @@ export default {
   theme: {
   	extend: {
       fontFamily: {
-        satoshi: ['Satoshi', 'sans-serif'],
         inter: ['Inter', 'sans-serif'],
-        geist: ['geist', 'sans-serif'],
+		roboto:['Roboto','sans-serif']
       },
   		borderRadius: {
   			lg: 'var(--radius)',

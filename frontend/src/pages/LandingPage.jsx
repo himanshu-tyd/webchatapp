@@ -25,7 +25,7 @@ export default function LandingPage() {
       <div className="gradient"></div>
       <div className="container mx-auto px-4 py-4 relative z-10">
         <header className="flex justify-between items-center mb-16">
-          <h1 className="text-2xl md:text-3xl font-bold ">
+          <h1 className="text-2xl md:text-3xl font-bold text-roboto">
             <span className="">Web</span>
             <span className="">Chat</span>
             <span className="">App</span>
