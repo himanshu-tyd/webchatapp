@@ -1,5 +1,7 @@
 import Message from "../models/messageSchema.js";
 import Conversation from "../models/conversationSchema.js";
+import { getReveivedUserSocket, io } from "../socket/socket.js";
+
 
 export const sendMessage = async (req, res) => {
   try {
@@ -27,10 +29,18 @@ export const sendMessage = async (req, res) => {
     if(newMessage){
         conversation.messages.push(newMessage._id)  //TODO: push that new message in array of messages
     }
-    //SOCKET.IO Function go here
- 
+    
     //TODO: parallel run
     await Promise.all([conversation.save(),newMessage.save()])
+
+    //SOCKET.IO Function go here
+
+    const recieverSocket=getReveivedUserSocket(recieverId) //TODO: get socket id of reciever
+
+    if(recieverSocket){  
+      io.to(recieverSocket).emit("newMessage",newMessage)
+    }
+
 
     res.status(201).json({success:true,message:'new message',data:newMessage})
 
@@ -52,9 +62,9 @@ export const getMessages=async(req,res)=>{
     const conversation=await Conversation.findOne({
       participants:{ $all : [senderId,chatToId] }
     }).populate("messages")
-    console.log(conversation);
 
-    if(!conversation) res.status(404).json([]) 
+
+    if(!conversation) return res.status(404).json({success:false,message:'No messages',data:[]} ) 
   
     res.status(200).json({success:true,message:'messages found',data:conversation.messages })
 

@@ -10,18 +10,22 @@ const FileRouter = () => {
   const { user } = useAuthContext();
 
   return (
-    <div>
+    <div className="">
       <Routes>
         <Route exact path="/" element={<LandingPage />} />
+          
         <Route
           path="/signup"
-          element={user ? <Navigate to="/inbox"/> : <SignUp />}
+          element={user ? <Navigate to="/inbox" /> : <SignUp />}
         />
         <Route
           path="/login"
           element={user ? <Navigate to="/inbox" /> : <LogIn />}
         />
-        <Route path="/inbox" element={<Dashboard />} />
+        <Route
+          path="/inbox"
+          element={user ? <Dashboard /> : <Navigate to="/login" />}
+        />
       </Routes>
     </div>
   );

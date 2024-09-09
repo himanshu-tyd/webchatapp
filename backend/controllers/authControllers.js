@@ -38,13 +38,11 @@ export const singUp = async (req, res) => {
 
       generateToken(saveUser._id, res);
 
-      res
-        .status(201)
-        .json({
-          success: true,
-          message: "Congratulations! Your account has been successfully created.",
-          data: saveUser,
-        });
+      res.status(201).json({
+        success: true,
+        message: "Congratulations! Your account has been successfully created.",
+        data: saveUser,
+      });
     }
   } catch (e) {
     console.log("ERROR IN SINGUP ->", e);
@@ -58,27 +56,27 @@ export const login = async (req, res) => {
     const user = await User.findOne({ username });
 
     if (!user) {
-      return res
-        .status(404)
-        .json({
-          success: false,
-          message: "Account Not Found",
-        });
+      return res.status(404).json({
+        success: false,
+        message: "Account Not Found",
+      });
     }
 
     const hashCompare = await bcrypt.compare(password, user.password);
 
     if (!hashCompare) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Your username or password is incorrect. Please try again." });
+      return res.status(400).json({
+        success: false,
+        message: "Your username or password is incorrect. Please try again.",
+      });
     }
 
     //TODO:generate token and set in cookie
     generateToken(user._id, res);
 
-    res.status(200).json({ success: true, message: "Login Successful",data:user});
-
+    res
+      .status(200)
+      .json({ success: true, message: "Login Successful", data: user });
   } catch (e) {
     console.log("ERROR IN LOGIN ->", e);
     return res.status(500).json("INTERNAL SERVER ERROR -->", e);
@@ -87,10 +85,31 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
   try {
-    res.cookie("jwt", "",{ maxAge: 0 })
+    update(req);
+
+    res.cookie("jwt", "", { maxAge: 0 });
+
     res.status(200).json({ success: true, message: "Logged Out Successfully" });
   } catch (e) {
     console.log("ERROR IN LOGOUT ->", e);
     return res.status(500).json("INTERNAL SERVER ERROR -->", e);
+  }
+};
+
+const update = async (req) => {
+  const user = req.user._id;
+
+  try {
+    await User.findByIdAndUpdate(
+      user,
+      {
+        updatedAt: new Date(),
+      },
+      {
+        new: true,
+      }
+    );
+  } catch (e) {
+    console.log("ERROR IN LOGOUT ->", e);
   }
 };

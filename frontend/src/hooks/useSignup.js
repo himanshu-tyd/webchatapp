@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { useToast } from "./use-toast.js";
 import { useAuthContext } from "../context/AuthContext";
-
+import useToast from "./useToast.js";
 
 export const useSignUp = () => {
   const [loading, setloading] = useState(false);
   const { toast } = useToast();
-  const {setUser} =useAuthContext()
-  
+  const { setUser } = useAuthContext();
+  const { showToast } = useToast();
 
   const signup = async (form) => {
     setloading(true);
@@ -26,31 +25,21 @@ export const useSignUp = () => {
       const data = await res.json();
 
       if (!res.ok) {
-        return toast({
-          variant: "destructive",
-          title: "Uh oh! Failed to sign in.",
-          description: `${data.message}`,
-        });
+        return showToast("error", "Uh oh! Failed to sign in.", data.message);
       }
 
+      setUser(data.data);
+      localStorage.setItem("logged-user", JSON.stringify(data.data));
 
+      showToast("success", data.message);
 
-      
-      console.log('user data->',data);
-      setUser(data.data)
-       console.log('local storage',localStorage.setItems('logged-user',JSON.stringify(data.data)))
-      
-      toast({
-        variant: "Success",
-        title: `${data.message}`,
-      });
       return data;
     } catch (e) {
-      toast({
-        variant: "destructive",
-        title: "Uh oh! something went wrong please try after some time.",
-        description: `${e.error}`,
-      });
+      showToast(
+        "error",
+        "Uh oh! something went wrong please try after some time.",
+        e.message
+      );
     } finally {
       setloading(false);
     }
