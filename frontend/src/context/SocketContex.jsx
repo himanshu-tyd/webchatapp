@@ -9,6 +9,8 @@ export const useSocketContext = () => {
   return useContext(SocketContext);
 };
 
+console.log(BASE_URL);
+
 export const SocketContextProvider = ({ children }) => {
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [socket, setSocket] = useState(null);

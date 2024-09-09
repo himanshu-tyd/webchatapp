@@ -85,7 +85,7 @@ const Messages = () => {
 
           <Message className='sticky top-0' />
 
-          {picker && <Emoji message={message} setMessage={setMessage} className='sm:hidden block' />}
+          {picker && <Emoji message={message} setMessage={setMessage}  />}
 
           {/* --------------send Message section ------------   */}
           <form
@@ -104,7 +104,7 @@ const Messages = () => {
             <div className="flex items-ceneter justify-center gap-2 ">
               <div
                 onClick={() => setPicker(!picker)}
-                className={` hover:text-[#171717]  p-4 rounded-md   cursor-pointer ${
+                className={` hover:text-[#171717]  p-4 rounded-md   cursor-pointer hidden md:block ${
                   picker ? "text-[#171717]" : "text-gray-600"
                 } `}
               >
