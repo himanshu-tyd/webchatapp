@@ -17,11 +17,11 @@ import { dateFormat } from "../lib/utils.js";
 const Messages = () => {
   const [picker, setPicker] = useState(false);
   const [message, setMessage] = useState("");
-  const { selectedChats, setSelectedChats } = useMessagesStore();          //ZUSTAND STORE
-  const { sendMesage, loading } = useSendMessage();                        //HOOK TO SEND MESSAGES
-  const { onlineUsers } = useSocketContext();                              //SOCKET CONTEXT
-  const online = onlineUsers.includes(selectedChats?._id);                 //CHECKING IF USER IS ONLINE
-  const lastOnline = dateFormat(selectedChats?.updatedAt);                 //LAST ONLINE
+  const { selectedChats, setSelectedChats } = useMessagesStore();         //ZUSTAND STORE
+  const { sendMesage, loading } = useSendMessage();                       //HOOK TO SEND MESSAGES
+  const { onlineUsers } = useSocketContext();                             //SOCKET CONTEXT
+  const online = onlineUsers.includes(selectedChats?._id);                //CHECKING IF USER IS ONLINE
+  const lastOnline = dateFormat(selectedChats?.updatedAt);                //LAST ONLINE
   const inputRef = useRef(null);                                           //FOR SCROLLING
 
   useEffect(() => {
@@ -38,6 +38,15 @@ const Messages = () => {
 
     setMessage("");
   };
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      const size = window.innerWidth <= 768;
+      if (size) setPicker(false);
+    });
+
+    return ()=> window.removeEventListener("resize", ()=>{})
+  },[]);
 
   useEffect(() => {
     if (inputRef.current && document.activeElement !== inputRef.current) {

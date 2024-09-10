@@ -1,3 +1,5 @@
+import jwt from "jsonwebtoken";
+
 /**
  * THIS FUNCTION GENERATES JWT TOKEN AND SETS IT IN THE RESPONSE COOKIE
  * @param {string} userId - USER ID TO BE ENCODED IN THE TOKEN
