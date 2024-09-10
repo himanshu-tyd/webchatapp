@@ -15,19 +15,32 @@ const Chats = ({ active, setActive }) => {
   const { showToast } = useToast();
   const { setSelectedChats } = useMessagesStore();
 
+  /**
+   * HANDLE CHANGE EVENT FOR SEARCH INPUT
+   * 
+   * @param {object} e - EVENT OBJECT
+   * 
+   * IF SEARCH VALUE IS LESS THAN 3 CHARACTERS, RETURN
+   * 
+   * FIND CHAT BY SEARCH VALUE
+   * IF CHAT IS FOUND, SET SELECTED CHAT TO FOUND CHAT
+   * ELSE, SHOW TOAST WITH MESSAGE "USER NOT FOUND"
+   */
   const handleChange = (e) => {
-    setSearch(e.target.value);
+   
+    setSearch(e.target.value)
 
-    if (search.length < 3 || !search) return;
+    if (search.length < 3) return;
 
-    let fillter = chats.find((c) =>
-      c.user.fullName.toLowerCase().includes(search.toLowerCase())
+    const filteredChat = chats.find(
+      (chat) =>
+        chat.user.fullName.toLowerCase().includes(search.toLowerCase())
     );
 
-    if (fillter) {
-      setSelectedChats(fillter.user);
+    if (filteredChat) {
+      setSelectedChats(filteredChat.user);
     } else {
-      return showToast("info", "the user you are lookig for is not found");
+      showToast("info", "THE USER YOU ARE LOOKING FOR IS NOT FOUND");
     }
   };
 

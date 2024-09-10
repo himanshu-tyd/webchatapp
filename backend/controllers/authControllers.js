@@ -2,6 +2,8 @@ import User from "../models/userSchema.js";
 import generateToken from "../utils/Token.js";
 import bcrypt from "bcryptjs";
 
+//SINGUP
+
 export const singUp = async (req, res) => {
   const { fullName, username, password, confirmPassword, image } = req.body;
   try {
@@ -34,7 +36,7 @@ export const singUp = async (req, res) => {
     if (newUser) {
       const saveUser = await newUser.save();
 
-      //TODO: generate token
+      //TODO: GENERATED TOKEN WHEN USER IS CREATED ANS SET COOKIES IN BROWSER
 
       generateToken(saveUser._id, res);
 
@@ -49,6 +51,8 @@ export const singUp = async (req, res) => {
     return res.status(500).json("INTERNAL SERVER ERROR -->", e);
   }
 };
+
+//LOGIN
 
 export const login = async (req, res) => {
   const { username, password } = req.body;
@@ -71,7 +75,8 @@ export const login = async (req, res) => {
       });
     }
 
-    //TODO:generate token and set in cookie
+    //TODO: GENERATED TOKEN WHEN USER IS CREATED AND SET COOKIES IN BROWSER
+
     generateToken(user._id, res);
 
     res
@@ -83,8 +88,13 @@ export const login = async (req, res) => {
   }
 };
 
+//LOGOUT
+
 export const logout = async (req, res) => {
   try {
+
+
+    //CALLING FUNCTION IN LOGOUT FUNCTION TO UPDATE USER LAST LOGOUT TIME
     update(req);
 
     res.cookie("jwt", "", { maxAge: 0 });
@@ -95,6 +105,8 @@ export const logout = async (req, res) => {
     return res.status(500).json("INTERNAL SERVER ERROR -->", e);
   }
 };
+
+// TODO: THIS IS THE FUNCTION THAT UPDATE USER LAST LOGOUT TIME IN DATABASE DO WE CAN SHOW LAST STATUS OF THE USER IN DASHBOARD
 
 const update = async (req) => {
   const user = req.user._id;

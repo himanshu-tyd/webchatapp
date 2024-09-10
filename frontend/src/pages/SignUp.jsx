@@ -30,14 +30,17 @@ const SignUp = () => {
 
   const { signup, loading: singInloading } = useSignUp();
 
+
+  //UPLOAD IMAGE FUNCTION
   const handleFileUpload = async (e) => {
     setloading(true);
 
     try {
       const file = e.target.files[0];
-      const data = await uploadImage(file);
+      const data = await uploadImage(file); //FUNCTION THAT TAKE FILE NAME AND UPLOAD IT TO CLOUDINARY
 
       setProfileImage(data.url);
+      
       setForm({ ...form, image: data.url });
     } catch (e) {
       toast({ variant: "destructive", title: `${e.error}` });

@@ -1,23 +1,18 @@
+/* eslint-disable react/prop-types */
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import useMessagesStore from "../zustand/useConversation.js";
 import { dateFormat } from "../lib/utils.js";
-import useToast from "../hooks/useToast.js";
 import { useSocketContext } from "../context/SocketContex.jsx";
 
 const ChatsCard = ({ allUsers }) => {
   const { user, lastMessage } = allUsers;
-  
   const {onlineUsers}= useSocketContext()
-
   const { selectedChats, setSelectedChats } = useMessagesStore();
-
-  let lastDate = dateFormat(lastMessage?.createdAt);
-
+  let lastDate = dateFormat(lastMessage?.createdAt);  // THIS CUSTOME FUNCTION IS DATA MONGODB DATE FORMAT CONVERTER
   let isSelected = selectedChats?._id === user?._id;
-
   const isOnline=onlineUsers.includes(user?._id)
-
-
+  
+  
   return (
     <div
       className={`w-full h-15  flex hover:bg-gray-100 hover:cursor-pointer duration-100 items-center px-2 ${
@@ -32,6 +27,7 @@ const ChatsCard = ({ allUsers }) => {
           <AvatarFallback>{user?.fullName.charAt(0)}</AvatarFallback>
         </Avatar>
       </div>
+
       <div className="w-full ml-3 flex flex-col ">
         <div className="w-full flex">
           <h2 className="text-inter font-bold">{user?.fullName}</h2>

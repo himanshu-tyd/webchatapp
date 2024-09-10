@@ -1,14 +1,11 @@
+/* eslint-disable react/prop-types */
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAuthContext } from "../context/AuthContext";
-import useMessagesStore from "../zustand/useConversation.js";
 import { dateFormat } from "../lib/utils.js";
-import { useEffect } from "react";
 
 const MessageCard = ({ allMessages, loading }) => {
   const { message, createdAt, senderId, newMessage } = allMessages;
-
   const { user } = useAuthContext();
-
   let isMe = senderId == user?._id;
 
   return (
@@ -16,9 +13,10 @@ const MessageCard = ({ allMessages, loading }) => {
       className={` ${
         isMe
           ? `flex-end "   `
-          : `flex-start ${newMessage ? "shake-animation" : ""}   `
+          : `flex-start ${newMessage ? "shake-animation" : ""}`  // ANIMATION FOR NEW MESSAGES
       } md:px-5 px-2 `}
     >
+
       {loading ? (
         <SkeleTons />
       ) : (
@@ -39,6 +37,8 @@ const MessageCard = ({ allMessages, loading }) => {
 
 export default MessageCard;
 
+
+// SKELETONS FOR MESSAGE CARD TO SHOW WHILE LOADING
 const SkeleTons = () => {
   return (
     <div className="mt-1 flex gap-1 flex-col ">

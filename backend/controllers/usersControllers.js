@@ -12,27 +12,27 @@ export const getSideBarUsers=async(req,res)=>{
 
         const userLastMessages = await Promise.all(
             allusers?.map(async (user) => {
+
+
+              //QUERY FOR FINDING LATEST MESSAGE
               const lastMessage = await Message.findOne({
                 $or: [
                   { senderId: user._id, recieverId: loggedUserid },
                   { senderId: loggedUserid, recieverId: user._id },
                 ],
               })
-                .sort({ createdAt: -1 }) // Sort by createdAt descending to get the latest message
-                .exec(); // Limit to one result
+                .sort({ createdAt: -1 }) // SORTING TO GET THE LATEST MESSAGE
+                .exec(); // EXECUTING THE QUERY
       
               return {
-                user: user,
-                lastMessage: lastMessage || null,
+                user: user,  // ALL USER INFO
+                lastMessage: lastMessage || null, // LATEST MESSAGE OR NULL IF NO MESSAGE
               };
             })
           );
 
 
-
-        // if(!allusers) res.status(404).json({success:false,message:"There are no users on server."})
-
-        res.status(200).json({success:true,message:'Users founded', data:userLastMessages })
+        res.status(200).json({success:true,message:'Users founded', data:userLastMessages }) // RETUIRING TOW OBJECTS (USERS AND LATEST MESSAGES) 
 
     } catch (e) {
         console.log("ERROR IN GETSIDEBARUSERS ->", e);

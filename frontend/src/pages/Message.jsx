@@ -12,7 +12,10 @@ const Message = () => {
   useEffect(() => {
     if (messages && messages.length > 0) {
       const timer = setTimeout(() => {
-        lastMessage.current.scrollIntoView({ behavior: "smooth", block: "end" });
+        lastMessage.current.scrollIntoView({
+          behavior: "smooth",
+          block: "end",
+        });
       }, 100);
       return () => clearTimeout(timer);
     }
@@ -25,9 +28,9 @@ const Message = () => {
       )}
 
       {messages &&
-        messages.length >  0 &&
+        messages.length > 0 &&
         messages.map((message) => (
-          <div key={message._id} ref={lastMessage} >
+          <div key={message._id} ref={lastMessage}>
             <MessageCard allMessages={message} loading={loading} />
           </div>
         ))}
@@ -36,4 +39,3 @@ const Message = () => {
 };
 
 export default Message;
-

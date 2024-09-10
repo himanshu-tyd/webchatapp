@@ -1,4 +1,10 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react-refresh/only-export-components */
 import React from "react";
+
+
+
+//FUNCTION TO USE CONTEXT IN APP THAT WILL RETURN THE CONTEXT DATA
 export const useAuthContext = () => {
   return React.useContext(AuthContext);
 };

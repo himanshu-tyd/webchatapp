@@ -1,26 +1,30 @@
-import { useState, useEffect } from 'react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { LandingPageData} from '../constants/index.js'
-import { MoonIcon ,SunIcon,GitHubLogoIcon,TwitterLogoIcon} from '@radix-ui/react-icons'
-import extractYear from '../lib/utils.js'
-import { Link } from 'react-router-dom'
-
+import { useState, useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { LandingPageData } from "../constants/index.js";
+import {
+  MoonIcon,
+  SunIcon,
+  GitHubLogoIcon,
+  TwitterLogoIcon,
+} from "@radix-ui/react-icons";
+import extractYear from "../lib/utils.js";
+import { Link } from "react-router-dom";
 
 export default function LandingPage() {
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     if (darkMode) {
-      document.documentElement.classList.add('dark')
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.classList.remove('dark')
+      document.documentElement.classList.remove("dark");
     }
-  }, [darkMode])
+  }, [darkMode]);
 
   const toggleDarkMode = () => {
-    setDarkMode(!darkMode)
-  }
+    setDarkMode(!darkMode);
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
@@ -33,18 +37,37 @@ export default function LandingPage() {
             <span className="">App</span>
           </h1>
           <div className="flex items-center space-x-4">
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+            <a
+              href="https://twitter.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
               <Button size="icon" variant="ghost">
                 <TwitterLogoIcon className="h-5 w-5" />
               </Button>
             </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <a
+              href="https://github.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+            >
               <Button size="icon" variant="ghost">
                 <GitHubLogoIcon className="h-5 w-5" />
               </Button>
             </a>
-            <Button size="icon" variant="ghost" onClick={toggleDarkMode} aria-label="Toggle dark mode">
-              {darkMode ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
+            <Button
+              size="icon"
+              variant="ghost"
+              onClick={toggleDarkMode}
+              aria-label="Toggle dark mode"
+            >
+              {darkMode ? (
+                <SunIcon className="h-5 w-5" />
+              ) : (
+                <MoonIcon className="h-5 w-5" />
+              )}
             </Button>
           </div>
         </header>
@@ -52,19 +75,20 @@ export default function LandingPage() {
         <main>
           <section className="text-center mb-16">
             <h2 className="text-4xl md:text-6xl font-bold mb-4">
-              <span className="">Connect,</span>{' '}
-              <span className="">Collaborate,</span>{' '}
+              <span className="">Connect,</span>{" "}
+              <span className="">Collaborate,</span>{" "}
               <span className="">Communicate</span>
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8  ">
               Experience seamless communication with WebChatApp
             </p>
-            <Link to={'/signup'} >
-
-            <Button size="lg" className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white">
-              Start Chatting Now
-            </Button>
-
+            <Link to={"/signup"}>
+              <Button
+                size="lg"
+                className="bg-gradient-to-r from-green-400 to-blue-500 hover:from-green-500 hover:to-blue-600 text-white"
+              >
+                Start Chatting Now
+              </Button>
             </Link>
           </section>
 
@@ -73,8 +97,12 @@ export default function LandingPage() {
               <Card key={index} className="bg-white dark:bg-gray-800">
                 <CardContent className="p-6 flex flex-col items-center ">
                   <feature.icon className="w-12 h-12 mb-4 text-blue-500" />
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-gray-600 dark:text-gray-300 text-center">{feature.description}</p>
+                  <h3 className="text-lg font-semibold mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 text-center">
+                    {feature.description}
+                  </p>
                 </CardContent>
               </Card>
             ))}
@@ -95,5 +123,5 @@ export default function LandingPage() {
         </footer>
       </div>
     </div>
-  )
+  );
 }

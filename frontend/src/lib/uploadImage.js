@@ -1,6 +1,8 @@
 const cloud_name = import.meta.env.VITE_CLOUD_NAME;
 const cloud_preset_name = import.meta.env.VITE_UPLOAD_PRESET_NAME;
 
+
+//FUNCTION THAT TAKE FILE NAME AND UPLOAD IT TO CLOUDINARY
 const uploadImage = async (file) => {
 
   try {

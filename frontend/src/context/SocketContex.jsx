@@ -5,6 +5,8 @@ import io from "socket.io-client";
 
 export const SocketContext = createContext();
 
+
+//FUNCTION TO USE SOCKET CONTEXT ANT THIS WILL RETURN THE CONTEXT DATA
 export const useSocketContext = () => {
   return useContext(SocketContext);
 };
@@ -12,22 +14,24 @@ export const useSocketContext = () => {
 console.log(BASE_URL);
 
 export const SocketContextProvider = ({ children }) => {
-  const [onlineUsers, setOnlineUsers] = useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]); 
   const [socket, setSocket] = useState(null);
   const { user } = useAuthContext();
+
   useEffect(() => {
     if (user) {
-      const socketInstance = io(BASE_URL || "http://localhost:8000" , {
-        query: {userId: user._id,},
+      const socketInstance = io("http://localhost:8000" , {
+        query: {userId: user._id,},  // WE ARE SENDING THE USER ID TO THE SERVER SO WE CAN KEEP TRACK OF ONLINE USERS
       });
 
+      //LISTENING FOR ONLINE USERS EVENT CREATE IN /backend/socket/socket.js
       socketInstance.on("getOnlineUsers", (users) => {
         setOnlineUsers(users);
       });
 
-      setSocket(socketInstance);
+      setSocket(socketInstance); 
 
-      return () => socketInstance.close();
+      return () => socketInstance.close();  // IF THE COMPONENT UNMOUNTS THEN CLOSE THE SOCKET 
     } 
       if (socket) {
         socket.close();
@@ -37,7 +41,7 @@ export const SocketContextProvider = ({ children }) => {
 
   const context = { 
     socket,
-    onlineUsers,
+    onlineUsers, // USE THIS TO GET THE ONLINE USERS
   };
 
   return (

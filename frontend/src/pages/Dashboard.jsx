@@ -1,14 +1,8 @@
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useEffect, useState } from "react";
 
 import { CircleSpinner } from "react-spinners-kit";
-import {
-  MenuIcon,
-  LogOutIcon,
-  MessageCircleMoreIcon,
-
-} from "lucide-react";
+import { MenuIcon, LogOutIcon, MessageCircleMoreIcon } from "lucide-react";
 import Messages from "./Messages";
 import Chats from "./Chats";
 import { useAuthContext } from "../context/AuthContext";
@@ -20,22 +14,16 @@ const Dashboard = () => {
   const { logout, loading } = useLogout();
   const [isMobile, setIsMobile] = useState(false);
 
-
-  const handleActive = (value) => {
-    if (isMobile) {
-      setActive(value);
-    }
-  };
-
+  // RESPONSIVE FOR SIDEBAR USERS
   useEffect(() => {
     const handResize = () => {
       const size = window.innerWidth <= 768;
-      setIsMobile(size);
+      if (size) {
+        setIsMobile(size);
+      }
       if (!size) setActive(false);
     };
-
     handResize();
-
     window.addEventListener("resize", handResize);
 
     return () => window.removeEventListener("resize", handResize);
@@ -45,9 +33,7 @@ const Dashboard = () => {
     <>
       {/* -----------settings section------------------- */}
 
-      <section
-        className="w-full flex  h-screen md:fixed   dark:bg-dark-900   "
-      >
+      <section className="w-full flex  h-screen md:fixed   dark:bg-dark-900   ">
         <div className="w-[60px] h-screen border-r glassmorphism border-gray-400 dark:border-dark-700 flex flex-col items-center  gap-2  ">
           <div className="mt-8">
             <img src="chat.png" width={"40"} height={"40"} />
@@ -60,7 +46,7 @@ const Dashboard = () => {
             className={`w-full icons  md:bg-gray-200 ${
               active ? "bg-gray-200" : ""
             }  `}
-            onClick={() => handleActive(true)}
+            onClick={isMobile ? () => setActive(true) : null}
           >
             <MessageCircleMoreIcon className={`text-gray-600   `} />
           </div>

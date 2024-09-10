@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import useToast from "./useToast";
 
 
+//CUSTOME HOOKE FOR GETTING CHATS AND MESSAGES
 const useGetChats = () => {
   const [loading, setLoading] = useState(false);
   const [chats, setChats] = useState([]);

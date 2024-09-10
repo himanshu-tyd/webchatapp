@@ -7,7 +7,7 @@ import { useAuthContext } from "../context/AuthContext";
 import { Navigate } from "react-router-dom";
 
 const FileRouter = () => {
-  const { user } = useAuthContext();
+  const { user } = useAuthContext(); //AUTHENTICATION USER
 
   return (
     <div className="">

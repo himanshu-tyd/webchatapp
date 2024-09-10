@@ -3,6 +3,7 @@ import useToast from "./useToast.js";
 import { useAuthContext } from "../context/AuthContext";
 
 
+//HOOK TO LOGOUT
 export const useLogout = () => {
   const [loading, setLoading] = useState(false);
 
@@ -24,13 +25,14 @@ export const useLogout = () => {
         showToast("error", data.message);
       }
 
-      setUser(null);
-      localStorage.removeItem("logged-user");
-      console.log(data);
-      showToast("success", data.message);
+      setUser(null);                               //SET USER TO NULL IN CONTEXT
+      localStorage.removeItem("logged-user");      //REMOVE USER FROM LOCAL STORAGE  
+  
+      showToast("success", data.message)
+
     } catch (e) {
       showToast("error", e.error);
-      console.log(e);
+   
     } finally {
       setLoading(false);
     }

@@ -6,6 +6,7 @@ import {
 } from "@radix-ui/react-icons";
 import { p1, p2, p3, p4 } from "../assets";
 
+// THIS IS LANDING PAGE DATA
 const LandingPageData = [
   {
     icon: MessageCircle,
@@ -29,9 +30,12 @@ const LandingPageData = [
   },
 ];
 
+
+
+// THIS IS DATA FOR SIDEBAR USERS
 const people = [
   {
-name: "Anil",
+    name: "Anil",
     message: "April fool’s day",
     time: "Today, 9.52pm",
     status: "✔✔",
@@ -88,6 +92,8 @@ name: "Anil",
   },
 ];
 
+
+// MESSAGES DATA
 const conversation = [
   {
     sender: "Anil",

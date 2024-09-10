@@ -7,6 +7,7 @@ export function cn(...inputs) {
   return twMerge(clsx(inputs));
 }
 
+//CURRENT YEAR EXTACTOR FUNCTION
 export default function extractYear() {
   let date = new Date();
   return date.getFullYear();
@@ -14,6 +15,7 @@ export default function extractYear() {
 
 
 
+//FUNCTION THAT FORMATE DATA TO HUMAN READABLE FORMAT
 export const dateFormat = (date) => {
   if (!date) return "";
 

@@ -7,7 +7,7 @@ const router=express.Router()
 
 router.post('/signup',singUp)
 router.post('/login',login)
-router.post('/logout',protectRoute,logout)
+router.post('/logout',protectRoute,logout) // SPACIFICLY WE ARE CALLING THE PROTEDTED MIDDLEWARE SO WE HAVE LOGGED USER ID
 
 
 export default router

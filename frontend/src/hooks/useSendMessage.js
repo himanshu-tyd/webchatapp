@@ -3,6 +3,7 @@ import useMessagesStore from "../zustand/useConversation.js";
 import { useState } from "react";
 
 
+//HOOK TO SEND MESSAGES
 const useSendMessage = () => {
   const [loading, setLoading] = useState(false);
   const { showToast } = useToast();
@@ -17,6 +18,8 @@ const useSendMessage = () => {
     setLoading(true);
 
     try {
+
+      //SEND MESSAGE TO SERVER AND RECEIVE RESPONSE
       const res = await fetch(`/api/messages/send/${selectedChats._id}`, {
         method: "POST",
         headers: {
@@ -34,6 +37,7 @@ const useSendMessage = () => {
 
       const newMessage=data.data
 
+      //SET MESSAGES IN ZUSTAND
       setMessages([...messages, newMessage]);
 
     } catch (e) {

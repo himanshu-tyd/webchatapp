@@ -3,9 +3,8 @@ import {
   SmileIcon,
   SendHorizonalIcon,
   MessageCircleMoreIcon,
-  Send,
 } from "lucide-react";
-import { CircleSpinner, FlapperSpinner } from "react-spinners-kit";
+
 import useMessagesStore from "../zustand/useConversation.js";
 import { useEffect, useRef, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
@@ -16,15 +15,14 @@ import { useSocketContext } from "../context/SocketContex.jsx";
 import { dateFormat } from "../lib/utils.js";
 
 const Messages = () => {
-  const inputRef = useRef(null);
-  const { selectedChats, setSelectedChats } = useMessagesStore();
-  const { sendMesage, loading } = useSendMessage();
-  const [message, setMessage] = useState("");
   const [picker, setPicker] = useState(false);
-  const { onlineUsers } = useSocketContext();
-
-  const online = onlineUsers.includes(selectedChats?._id);
-  const lastOnline = dateFormat(selectedChats?.updatedAt);
+  const [message, setMessage] = useState("");
+  const { selectedChats, setSelectedChats } = useMessagesStore();          //ZUSTAND STORE
+  const { sendMesage, loading } = useSendMessage();                        //HOOK TO SEND MESSAGES
+  const { onlineUsers } = useSocketContext();                              //SOCKET CONTEXT
+  const online = onlineUsers.includes(selectedChats?._id);                 //CHECKING IF USER IS ONLINE
+  const lastOnline = dateFormat(selectedChats?.updatedAt);                 //LAST ONLINE
+  const inputRef = useRef(null);                                           //FOR SCROLLING
 
   useEffect(() => {
     const clentUp = () => {
@@ -83,9 +81,9 @@ const Messages = () => {
 
           {/* -------------messages ------------- */}
 
-          <Message className='sticky top-0' />
+          <Message className="sticky top-0" />
 
-          {picker && <Emoji message={message} setMessage={setMessage}  />}
+          {picker && <Emoji message={message} setMessage={setMessage} />}
 
           {/* --------------send Message section ------------   */}
           <form

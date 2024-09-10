@@ -48,6 +48,9 @@ export const useSignUp = () => {
   return { signup, loading };
 };
 
+
+//VALIDATE DATA  
+//HERE I'M USING Shadcn TOAST DIRECTLY
 const validatData = (
   { fullName, username, password, confirmPassword, image },
   toast

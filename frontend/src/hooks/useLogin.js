@@ -29,10 +29,11 @@ export const useLogin = () => {
         return showToast("error", data.message);
       }
 
-      setUser(data.data);
-      localStorage.setItem("logged-user", JSON.stringify(data.data));
+      
+      setUser(data.data);                                             //SET USER IN CONTEXT
+      localStorage.setItem("logged-user", JSON.stringify(data.data)); //SET USER IN LOCAL STORAGE
 
-      showToast("success", data.message);
+      showToast("success", data.message); 
 
       return data;
     } catch (e) {
@@ -45,6 +46,8 @@ export const useLogin = () => {
   return { login, loading };
 };
 
+
+//VALIDATION FUNCTION
 const validateData = (username, password, showToast) => {
   const regex = /^[a-z\d_-]*[a-z][a-z\d_-]*$/;
 
