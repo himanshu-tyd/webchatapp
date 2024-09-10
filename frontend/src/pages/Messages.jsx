@@ -70,17 +70,17 @@ const Messages = () => {
                   src={selectedChats.image}
                   className="object-cover"
                 />
-                <AvatarFallback>AV</AvatarFallback>
+                <AvatarFallback>{selectedChats?.fullName.charAt(0).toUpperCase()}</AvatarFallback>
               </Avatar>
 
               <div className="flex flex-col">
-                <h3 className="font-bold">{selectedChats.fullName}</h3>
+                <h3 className="font-bold font-inter text-[18px] ">{selectedChats.fullName}</h3>
                 <span
-                  className={`text-[14px] ${
+                  className={`text-[14px] font-roboto ${
                     online ? "text-green-600 " : "text-gray-600"
                   } `}
                 >
-                  {online ? "online" : `last online: ${lastOnline}`}
+                  {online ? "online" : `Last online: ${lastOnline}`}
                 </span>
               </div>
             </div>
@@ -149,10 +149,10 @@ const NoSelectedChats = () => {
   const { user } = useAuthContext();
   return (
     <div className=" w-full h-full flex-center items-center glassmorphism flex-col ">
-      <h1 className="text-2xl font-semibold blue_gradient ">
+      <h1 className="text-2xl font-semibold blue_gradient font-inter ">
         Welcome {user.fullName}
       </h1>
-      <p className="text-gray-600">
+      <p className="text-gray-600 font-roboto text-[14px]">
         Select any chat to start the conversation.
       </p>
       <MessageCircleMoreIcon className="w-28 h-28  " />

@@ -21,12 +21,16 @@ const Message = () => {
     }
   }, [messages, lastMessage]);
 
+  if (!loading && messages.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-screen ">
+        <h3 className="text-[18px] font-inter" >send a message to start the conversation.</h3>
+      </div>
+    );
+  }
+
   return (
     <ScrollArea className="flex flex-col h-full sticky top-0 mt-auto  ">
-      {!loading && messages.length === 0 && (
-        <p className="text-center">send a message to start the conversation.</p>
-      )}
-
       {messages &&
         messages.length > 0 &&
         messages.map((message) => (

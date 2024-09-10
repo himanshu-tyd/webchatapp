@@ -7,6 +7,7 @@ import {
   SunIcon,
   GitHubLogoIcon,
   TwitterLogoIcon,
+  LinkedInLogoIcon
 } from "@radix-ui/react-icons";
 import extractYear from "../lib/utils.js";
 import { Link } from "react-router-dom";
@@ -44,11 +45,21 @@ export default function LandingPage() {
               aria-label="Twitter"
             >
               <Button size="icon" variant="ghost">
+                <LinkedInLogoIcon className="h-5 w-5" />
+              </Button>
+            </a>
+            <a
+              href="https://x.com/himanshu_tyd"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Twitter"
+            >
+              <Button size="icon" variant="ghost">
                 <TwitterLogoIcon className="h-5 w-5" />
               </Button>
             </a>
             <a
-              href="https://github.com"
+              href="https://github.com/himanshu-tyd/WebChatApp"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="GitHub"
@@ -58,6 +69,7 @@ export default function LandingPage() {
               </Button>
             </a>
             <Button
+              className={`${darkMode ? "bg-black" : ""}`}
               size="icon"
               variant="ghost"
               onClick={toggleDarkMode}

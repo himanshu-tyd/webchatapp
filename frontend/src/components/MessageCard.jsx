@@ -10,25 +10,30 @@ const MessageCard = ({ allMessages, loading }) => {
 
   return (
     <div
-      className={` ${
+      className={`md:px-5  px-2 ${
         isMe
           ? `flex-end "   `
-          : `flex-start ${newMessage ? "shake-animation" : ""}`  // ANIMATION FOR NEW MESSAGES
-      } md:px-5 px-2 `}
+          : `flex-start ${newMessage ? "shake-animation" : ""}` // ANIMATION FOR NEW MESSAGES
+      }  `}
     >
-
       {loading ? (
         <SkeleTons />
       ) : (
         <div
-          className={`flex flex-col ${
+          className={`flex flex-col shadow-lg ${
             isMe ? "bg-blue-400 text-white " : "bg-white text-black"
-          } px-4 py-1 mt-3 rounded-[5px] `}
+          } px-4 py-2 mt-2 rounded-[5px] `}
         >
-          <p className={`text-14px ${isMe ? "flex-end" : "flex-start"} w-full`}>
+          <p
+            className={`text-[14px] font-inter ${
+              isMe ? "flex-end" : "flex-start"
+            } w-full`}
+          >
             {message}
           </p>
-          <p className="ml-auto text-[12px] ">{dateFormat(createdAt)}</p>
+          <p className={`ml-auto text-[12px] font-roboto ${isMe ? "" : "text-gray-600"}  `}>
+            {dateFormat(createdAt)}
+          </p>
         </div>
       )}
     </div>
@@ -36,7 +41,6 @@ const MessageCard = ({ allMessages, loading }) => {
 };
 
 export default MessageCard;
-
 
 // SKELETONS FOR MESSAGE CARD TO SHOW WHILE LOADING
 const SkeleTons = () => {
