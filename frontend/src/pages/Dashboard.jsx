@@ -11,6 +11,7 @@ import { useLogout } from "../hooks/useLogout.js";
 const Dashboard = () => {
   const [active, setActive] = useState(false);
   const { user } = useAuthContext();
+
   const { logout, loading } = useLogout();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -33,8 +34,8 @@ const Dashboard = () => {
     <>
       {/* -----------settings section------------------- */}
 
-      <section className="w-full flex  h-screen md:fixed   dark:bg-dark-900   ">
-        <div className="w-[60px] h-screen border-r glassmorphism border-gray-400 dark:border-dark-700 flex flex-col items-center  gap-2  ">
+      <section className="w-full flex  h-screen md:fixed    ">
+        <div className="w-[60px] h-screen border-r glassmorphism border-gray-400  flex flex-col items-center  gap-2  ">
           <div className="mt-8">
             <img src="chat.png" width={"40"} height={"40"} />
           </div>
@@ -60,7 +61,7 @@ const Dashboard = () => {
             </div>
             <div onClick={logout} className="w-full icons mb-2">
               {loading ? (
-                <CircleSpinner />
+                <CircleSpinner size={20} color="#171717" />
               ) : (
                 <LogOutIcon className="text-gray-600" />
               )}

@@ -33,7 +33,7 @@ const LogIn = () => {
     <div className="flex items-center justify-between h-screen  ">
       <Card className="w-full max-w-md mx-auto glassmorphism">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">
+          <CardTitle className="text-2xl font-bold text-center  ">
             Login
           </CardTitle>
         </CardHeader>
@@ -51,7 +51,7 @@ const LogIn = () => {
               <Label htmlFor="password">Password</Label>
               <Input onChange={handleChange} id="password" type="password" />
             </div>
-            <Button type="submit" className="w-full" disable={loading}>
+            <Button type="submit" className="w-full  text-white" disable={loading}>
               {loading ? <ImpulseSpinner /> : "Log In"}
             </Button>
           </form>

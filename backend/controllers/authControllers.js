@@ -122,6 +122,6 @@ const update = async (req) => {
       }
     );
   } catch (e) {
-    console.log("ERROR IN LOGOUT ->", e);
+    console.log("ERROR IN UPDATE ->", e);
   }
 };

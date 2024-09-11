@@ -4,7 +4,6 @@ import {
   SendHorizonalIcon,
   MessageCircleMoreIcon,
 } from "lucide-react";
-
 import useMessagesStore from "../zustand/useConversation.js";
 import { useEffect, useRef, useState } from "react";
 import EmojiPicker from "emoji-picker-react";
@@ -12,7 +11,7 @@ import useSendMessage from "../hooks/useSendMessage.js";
 import Message from "./Message.jsx";
 import { useAuthContext } from "../context/AuthContext.jsx";
 import { useSocketContext } from "../context/SocketContex.jsx";
-import { dateFormat } from "../lib/utils.js";
+
 
 const Messages = () => {
   const [picker, setPicker] = useState(false);
@@ -23,6 +22,9 @@ const Messages = () => {
   const online = onlineUsers.includes(selectedChats?._id);                //CHECKING IF USER IS ONLINE
   const lastOnline = dateFormat(selectedChats?.updatedAt);                //LAST ONLINE
   const inputRef = useRef(null);                                           //FOR SCROLLING
+
+
+
 
   useEffect(() => {
     const clentUp = () => {

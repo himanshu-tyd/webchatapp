@@ -43,15 +43,15 @@ const Chats = ({ active, setActive }) => {
   return (
     <>
       <div
-        className={`md:w-1/3  h-full  md:block border-r border-gray-200  bg-white dark:bg-black  ${
+        className={`md:w-1/3  h-full  md:block border-r border-gray-200  bg-white  ${
           active ? "w-full  left-0 absolute  z-20  " : "hidden"
         } `}
       >
         <div className="mt-2 mb-2 flex p-2 ">
-          <h1 className="font-semibold text-2xl dark:text-white font-inter ">Chats</h1>
+          <h1 className="font-semibold text-2xl  font-inter ">Chats</h1>
           {active && (
             <div
-              className="p-2 hover:bg-gray-200 rounded-md border  border-slate-200 md:hidden block ml-auto"
+              className="p-2  rounded-md border  border-slate-200 md:hidden block ml-auto"
               onClick={() => setActive(false)}
             >
               <ChevronLeft />
@@ -64,7 +64,7 @@ const Chats = ({ active, setActive }) => {
             type="text"
             value={search}
             placeholder="Search or start new chat"
-            className="input !font-normal dark:bg-black dark:text-slate-100 dark:border-slate-300 "
+            className="input !font-normal "
             onChange={handleChange}
           />
         </div>
@@ -74,7 +74,7 @@ const Chats = ({ active, setActive }) => {
             <RotateSpinner />
           </div>
         ) : (
-          <ScrollArea className="h-full mt-2 w-full  bg-white pr-2 dark:bg-black ">
+          <ScrollArea className="h-full mt-2 w-full  bg-white pr-2 ">
             <div className="flex flex-col   ">
               {chats.map((items, index) => (
                 <div key={index} onClick={() => setActive(false)}>
