@@ -93,7 +93,6 @@ export const login = async (req, res) => {
 export const logout = async (req, res) => {
   try {
 
-
     //CALLING FUNCTION IN LOGOUT FUNCTION TO UPDATE USER LAST LOGOUT TIME
     update(req);
 
