@@ -11,7 +11,6 @@ export const useSocketContext = () => {
   return useContext(SocketContext);
 };
 
-console.log(BASE_URL);
 
 export const SocketContextProvider = ({ children }) => {
   const [onlineUsers, setOnlineUsers] = useState([]); 
@@ -20,7 +19,7 @@ export const SocketContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (user) {
-      const socketInstance = io("http://localhost:8000" , {
+      const socketInstance = io(BASE_URL || "http://localhost:8000" , {
         query: {userId: user._id,},  // WE ARE SENDING THE USER ID TO THE SERVER SO WE CAN KEEP TRACK OF ONLINE USERS
       });
 
