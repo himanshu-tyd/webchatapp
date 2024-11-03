@@ -3,6 +3,8 @@ import {
   SmileIcon,
   SendHorizonalIcon,
   MessageCircleMoreIcon,
+  VideoIcon,
+  PhoneCallIcon,
 } from "lucide-react";
 import useMessagesStore from "../zustand/useConversation.js";
 import { useEffect, useRef, useState } from "react";
@@ -66,7 +68,7 @@ const Messages = () => {
         <div className="flex flex-col w-full h-screen  ">
           {/* -------------header--------------- */}
 
-          <header className="w-full flex items-center p-5 h-20 bg-white border-b border-gray-200 z-10 sticky top-0 ">
+          <header className="w-full flex-between  items-center  p-5 h-20 bg-white border-b border-gray-200 z-10 sticky top-0 ">
             <div className="flex gap-3 items-center">
               <Avatar className="w-12 h-12">
                 <AvatarImage
@@ -88,7 +90,10 @@ const Messages = () => {
               </div>
             </div>
 
-            <div></div>
+            <div className="flex-center gap-5 bg-gray-200 rounded-lg px-5 py-3 ">
+              <VideoIcon className="hover:text-gray-500"/>
+              <PhoneCallIcon className="hover:text-gray-500"/>
+            </div>
           </header>
 
           {/* -------------messages ------------- */}

@@ -43,7 +43,7 @@ const Chats = ({ active, setActive }) => {
   return (
     <>
       <div
-        className={`md:w-1/3  h-full  md:block border-r border-gray-200  bg-white  ${
+        className={`md:w-1/3  h-screen  md:block border-r border-gray-200  bg-white  ${
           active ? "w-full  left-0 absolute  z-20  " : "hidden"
         } `}
       >

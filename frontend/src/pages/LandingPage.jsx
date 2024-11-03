@@ -27,10 +27,10 @@ export default function LandingPage() {
           </h1>
           <div className="flex items-center space-x-4">
             <a
-              href="https://twitter.com"
+              href="https://www.linkedin.com/in/himanshu-tyd/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Twitter"
+              aria-label="LinkedIn"
             >
               <Button size="icon" variant="ghost">
                 <LinkedInLogoIcon className="h-5 w-5" />
